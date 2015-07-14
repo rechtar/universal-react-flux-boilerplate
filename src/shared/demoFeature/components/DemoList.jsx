@@ -3,6 +3,14 @@ import React, { PropTypes } from 'react';
 import DemoItem from './DemoItem';
 
 class DemoList extends React.Component {
+    static defaultProps = {
+        items: []
+    };
+
+    static propTypes = {
+        items: PropTypes.arrayOf(PropTypes.object)
+    };
+
     render() {
         const { items } = this.props;
 
@@ -21,13 +29,5 @@ class DemoList extends React.Component {
         );
     }
 }
-
-DemoList.defaultProps = {
-    items: []
-};
-
-DemoList.propTypes = {
-    items: PropTypes.arrayOf(PropTypes.object)
-};
 
 export default DemoList;

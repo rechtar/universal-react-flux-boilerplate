@@ -1,6 +1,11 @@
 import React, { PropTypes } from 'react';
 
 class DemoItem extends React.Component {
+    static propTypes = {
+        title: PropTypes.string,
+        price: PropTypes.number
+    };
+
     render() {
         const { title, price } = this.props;
 
@@ -9,10 +14,5 @@ class DemoItem extends React.Component {
         );
     }
 }
-
-DemoItem.propTypes = {
-    title: PropTypes.string,
-    price: PropTypes.number
-};
 
 export default DemoItem;

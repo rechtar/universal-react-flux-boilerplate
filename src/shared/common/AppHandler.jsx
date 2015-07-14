@@ -2,6 +2,10 @@ import React from 'react';
 import { RouteHandler } from 'react-router';
 
 class AppHandler extends React.Component {
+    static contextTypes = {
+        router: React.PropTypes.func
+    };
+
     render() {
         return (
             <div>
@@ -11,8 +15,5 @@ class AppHandler extends React.Component {
     }
 }
 
-AppHandler.contextTypes = {
-    router: React.PropTypes.func
-};
 
 export default AppHandler;

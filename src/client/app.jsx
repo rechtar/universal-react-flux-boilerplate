@@ -2,22 +2,17 @@
 import 'Base64';
 import 'es5-shim';
 import 'es5-shim/es5-sham';
-
 import React from 'react';
 window.React = React;
-
-import router from './router';
+import Router from 'react-router';
+import routes from '../shared/routes.jsx';
 import Flux from '../shared/flux';
 import performRouteHandlerStaticMethod from '../shared/common/utils/performRouteHandlerStaticMethod';
 
 const flux = new Flux();
-flux.deserialize(decodeURIComponent(window.escape(atob(window.__snapshot__))));
+flux.deserialize(decodeURIComponent(escape(atob(window.__snapshot__))));
 
-router.run(async (Handler, state) => {
+Router.run(routes, Router.HistoryLocation, async (Handler, state) => {
     await performRouteHandlerStaticMethod(state.routes, 'routerWillRun', { flux });
-
-    React.render(
-        React.createElement(Handler, { flux }),
-        document.getElementById('app')
-    );
+    React.render(<Handler flux={flux} />, document.getElementById('app'));
 });
