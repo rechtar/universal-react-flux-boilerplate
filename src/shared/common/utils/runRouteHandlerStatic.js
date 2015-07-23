@@ -12,7 +12,7 @@
  * @param {any} ...args - Arguments to pass to the static method
  */
 
-async function performRouteHandlerStaticMethod(routes, methodName, ...args) {
+async function runRouteHandlerStatic(routes, methodName, ...args) {
     return Promise.all(
         routes
             .map(route => route.handler[methodName])
@@ -21,4 +21,4 @@ async function performRouteHandlerStaticMethod(routes, methodName, ...args) {
     );
 }
 
-export default performRouteHandlerStaticMethod;
+export default runRouteHandlerStatic;

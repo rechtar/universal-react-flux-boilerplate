@@ -6,18 +6,18 @@ class DemoStore extends Store {
 
         const demoActions = flux.getActions('demo');
 
-        this.register(demoActions.requestItems, this.handleRequestItems);
+        this.register(demoActions.requestItems, this._handleRequestItems);
 
-        this.state = this.getInitialState();
+        this.state = this._getInitialState();
     }
 
-    getInitialState() {
+    _getInitialState() {
         return {
             items: null
         };
     }
 
-    handleRequestItems(items) {
+    _handleRequestItems(items) {
         this.setState({ items });
     }
 

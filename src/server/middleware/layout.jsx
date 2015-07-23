@@ -7,7 +7,7 @@ import React from 'react';
 import Router from 'react-router';
 import routes from '../../shared/routes';
 import versionifyAssets from 'versionify-assets';
-import performRouteHandlerStaticMethod from '../../shared/common/utils/performRouteHandlerStaticMethod';
+import runRouteHandlerStatic from '../../shared/common/utils/runRouteHandlerStatic';
 
 function _createLayoutMiddleware(title, mainJS, mainCSS) {
     return (req, res, next) => {
@@ -15,7 +15,7 @@ function _createLayoutMiddleware(title, mainJS, mainCSS) {
         const flux = req.flux;
         Router.run(routes, req.url, async (Handler, state) => {
             try {
-                await performRouteHandlerStaticMethod(state.routes, 'routerWillRun', { flux });
+                await runRouteHandlerStatic(state.routes, 'routerWillRun', { flux });
                 const appString = React.renderToString(<Handler flux={flux} />);
                 const snapshot = new Buffer(flux.serialize(), 'utf-8').toString('base64');
                 res.render('base', { mainJS, mainCSS, env, title, snapshot, appString });

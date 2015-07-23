@@ -7,12 +7,12 @@ window.React = React;
 import Router from 'react-router';
 import routes from '../shared/routes.jsx';
 import Flux from '../shared/flux';
-import performRouteHandlerStaticMethod from '../shared/common/utils/performRouteHandlerStaticMethod';
+import runRouteHandlerStatic from '../shared/common/utils/runRouteHandlerStatic';
 
 const flux = new Flux();
 flux.deserialize(decodeURIComponent(escape(atob(window.__snapshot__))));
 
 Router.run(routes, Router.HistoryLocation, async (Handler, state) => {
-    await performRouteHandlerStaticMethod(state.routes, 'routerWillRun', { flux });
+    await runRouteHandlerStatic(state.routes, 'routerWillRun', { flux });
     React.render(<Handler flux={flux} />, document.getElementById('app'));
 });
